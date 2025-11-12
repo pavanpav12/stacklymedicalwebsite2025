@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare – Your Health Partner</title>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4776e6, #8e54e9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      width: 130px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ===== NAVBAR ===== */
+    #navbar ul.menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    #navbar ul.menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    #navbar ul.menu li a:hover {
+      color: #00c4a7;
+    }
+
+    /* ===== DROPDOWN ===== */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: blue;
+      list-style: none;
+      padding: 8px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-width: 160px;
+      z-index: 999;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px 18px;
+      color: #0f172a;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .dropdown-menu li a:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    /* Desktop hover dropdown */
+    @media (hover: hover) {
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    @media (max-width: 900px) {
+      #navbar ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(135deg, #176B87, #2515b8);
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+
+      #navbar ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #navbar ul.menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+      #navbar ul.menu li a {
+        display: block;
+        padding: 14px;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      #navbar ul.menu li a:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ✅ MOBILE DROPDOWN FIX */
+      .dropdown.open .dropdown-menu {
+        display: block;
+        position: relative;
+        top: 0;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: none;
+        border-radius: 6px;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        margin-top: 4px;
+      }
+
+      .dropdown-menu li a {
+        color: #e0f2fe;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .dropdown-menu li:last-child a {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+    </div>
+
+    <!-- ===== HAMBURGER ===== -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="home2.html">Home ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Home1</a></li>
+          </ul>
+        </li>
+        <li><a href="Buy Products.html">Baby Products</a></li>
+        <li><a href="buy insurance.html">Buy Insurance</a></li>
+        <li><a href="diagontics.html">Diagnostics</a></li>
+        <li><a href="service.html">Our Services</a></li>
+        <li><a href="contact1.html">Contact</a></li>
+        <li><a href="signup1.html">Signup</a></li>
+        <li><a href="logout1.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== JS ===== -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById("hamburger");
+    const navbarMenu = document.querySelector("#navbar ul.menu");
+
+    hamburger.addEventListener("click", () => {
+      navbarMenu.classList.toggle("active");
+      hamburger.classList.toggle("open");
+    });
+
+    // Dropdown toggle (mobile)
+    const dropdownLinks = document.querySelectorAll(".dropdown > a");
+
+    dropdownLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          const parent = link.parentElement;
+          const isOpen = parent.classList.contains("open");
+
+          // Close other dropdowns
+          document.querySelectorAll(".dropdown.open").forEach(drop => {
+            if (drop !== parent) drop.classList.remove("open");
+          });
+
+          // Toggle current dropdown
+          parent.classList.toggle("open", !isOpen);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+   <div class="slider-content">
+      
+      <div class="slider-buttons">
+        
+       
+      </div>
+    </div>
+  </section>
+  <style>
+    /* ===== Global Styles ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+   
+    
+
+    /* ===== Hero Section ===== */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("https://img.freepik.com/free-photo/doctor-using-digital-tablet-with-medical-icon-connection_53876-124502.jpg") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* ===== Diagnostics Section ===== */
+    .diagnostics {
+      padding: 60px 10%;
+      background: #fff;
+    }
+    .diagnostics h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #1e3a8a;
+      position: relative;
+    }
+    .diagnostics h2::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: #3b82f6;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+      border-radius: 2px;
+    }
+    .diagnostic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: #f8fafc;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 80px;
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+    .card:hover img {
+      transform: scale(1.1);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      color: #2563eb;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* ===== Booking Form ===== */
+    .booking {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      color: #fff;
+      text-align: center;
+      padding: 80px 10%;
+      animation: fadeUp 1.3s ease-in-out;
+    }
+    .booking h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .booking form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+    .booking input, .booking select {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+    .booking button {
+      background: #fff;
+      color: #2563eb;
+      border: none;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .booking button:hover {
+      background: #0f172a;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .booking form { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <h1>Advanced Medical Diagnostics</h1>
+    <p>Accurate testing with state-of-the-art equipment for precise health insights and faster recovery.</p>
+  </section>
+
+  <!-- ===== Diagnostics Section ===== -->
+  <section class="diagnostics">
+    <h2>Our Diagnostic Services</h2>
+    <div class="diagnostic-grid">
+      <div class="card">
+        <img src="https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/2966/2966486.png&output=webp" alt="Pathology">
+        <h3>Pathology & Biochemistry</h3>
+        <p>Comprehensive blood, urine, and tissue testing for metabolic, hormonal, and infection analysis.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/3209/3209072.png&output=webp" alt="Radiology">
+        <h3>Radiology & Imaging</h3>
+        <p>High-resolution CT, MRI, and X-ray imaging for accurate diagnosis with 3D reconstruction technology.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/2965/2965567.png&output=webp" alt="Cardiology">
+        <h3>Cardiology Diagnostics</h3>
+        <p>Advanced ECG, ECHO, and TMT tests for detailed cardiac health monitoring and risk assessment.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/3137/3137814.png&output=webp" alt="Molecular">
+        <h3>Molecular Diagnostics</h3>
+        <p>DNA/RNA-based tests including PCR, genetic profiling, and infectious disease panels with high sensitivity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Booking Form ===== -->
+<section class="booking">
+  <h2>Book a Diagnostic Test</h2>
+  <form id="diagnosticForm" novalidate>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required>
+    <select id="testType" required>
+      <option value="">Select Test Type</option>
+      <option value="Pathology">Pathology & Biochemistry</option>
+      <option value="Radiology">Radiology & Imaging</option>
+      <option value="Cardiology">Cardiology Diagnostics</option>
+      <option value="Molecular">Molecular Diagnostics</option>
+    </select>
+    <button type="submit">Book Now</button>
+  </form>
+</section>
+
+<script>
+  document.getElementById("diagnosticForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop normal form behavior
+    window.location.href = "4041.html"; // redirect to 4041.html
+  });
+</script>
+
+
+  <style>
+    /* ===== Global Styles ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fafc, #e2e8f0);
+      color: white;
+    }
+
+    section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    section h2 {
+      font-size: 1.2rem;
+      color: #64748b;
+      margin-bottom: 50px;
+    }
+
+    /* ===== Doctor Grid ===== */
+    .doctor-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      padding: 0 20px;
+    }
+
+    /* ===== Doctor Card ===== */
+    .doctor-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-width: 280px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ===== Image Styling ===== */
+    .doctor-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      border-bottom: 3px solid #38bdf8;
+    }
+
+    .doctor-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ===== Info Section ===== */
+    .doctor-info {
+      padding: 18px 15px 25px;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .doctor-info h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+
+    .doctor-info p {
+      color: #475569;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .doctor-info span {
+      display: inline-block;
+      background: linear-gradient(90deg, #22d3ee, #38bdf8);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .doctor-info span:hover {
+      background: linear-gradient(90deg, #38bdf8, #22d3ee);
+    }
+
+    /* ===== Hover Overlay Animation ===== */
+    .doctor-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .doctor-card:hover::after {
+      opacity: 1;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      section h1 {
+        font-size: 2rem;
+      }
+
+      section h2 {
+        font-size: 1rem;
+      }
+
+      .doctor-card img {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 40px 10px;
+      }
+
+      .doctor-info h3 {
+        font-size: 1rem;
+      }
+
+      .doctor-info p {
+        font-size: 0.85rem;
+      }
+
+      .doctor-info span {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h1> Cardiology Doctors</h1>
+    <h2>Our Top Specialists</h2>
+
+    <div class="doctor-section">
+      <!-- Cardiology -->
+      <div class="doctor-card">
+        <img src="doctor1.webp" alt="Dr. Asha Kumar">
+        <div class="doctor-info">
+          <h3>Dr. Asha Kumar</h3>
+          <p>Cardiologist | 12+ years experience</p>
+          <span>📞 +91 98765 43210</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <img src="docto2.webp" alt="Dr. Rahul Singh">
+        <div class="doctor-info">
+          <h3>Dr. Rahul Singh</h3>
+          <p>Cardiologist | 9+ years experience</p>
+          <span>📞 +91 87654 32109</span>
+        </div>
+      </div>
+
+      <!-- Pediatrics -->
+      <div class="doctor-card">
+        <img src="doctor3.webp" alt="Dr. Meera Joshi">
+        <div class="doctor-info">
+          <h3>Dr. Meera Joshi</h3>
+          <p>Cardiologist | 10+ years experience</p>
+          <span>📞 +91 99887 66554</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+<script>
+  // ===== LIVE INPUT RESTRICTIONS =====
+  const nameInput = document.getElementById("name");
+  const phoneInput = document.getElementById("phone");
+
+  // Only letters and spaces for name
+  nameInput.addEventListener("input", () => {
+    nameInput.value = nameInput.value.replace(/[^A-Za-z ]+/g, '');
+  });
+
+  // Only digits for phone
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(/[^0-9]+/g, '');
+  });
+
+  // ===== FORM VALIDATION =====
+  document.getElementById("diagnosticForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = phoneInput.value.trim();
+    const testType = document.getElementById("testType").value;
+
+    // Name validation
+    const namePattern = /^[A-Za-z ]+$/;
+    if (!namePattern.test(name)) {
+      alert("❌ Please enter a valid name (letters only).");
+      nameInput.focus();
+      return;
+    }
+
+    // Email validation
+    
+    
+
+    // Phone validation
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+      alert("❌ Please enter a valid 10-digit phone number.");
+      phoneInput.focus();
+      return;
+    }
+
+    // Test type validation
+    if (!testType) {
+      alert("❌ Please select a diagnostic test.");
+      return;
+    }
+
+    
+</script>
+
+  <!-- ====== ADVANCED ANIMATED FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+<style>
+  
+<style>
+   /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="4041.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="4041.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="4041.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="4041.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="home2.html"> Home</a></li>
+          <li><a href="Buy Products.html">Baby Products</a></li>
+          <li><a href="buy insurance.html">Buy Insurance</a></li>
+          <li><a href="diagontics.html">Diagnostics</a></li>
+          <li><a href="service.html"> Our Services</a></li>
+          <li><a href="contact1.html"> Contact</a></li>
+          <li><a href="signup1.html"> Signup</a></li>
+        </ul>
+      </div>
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

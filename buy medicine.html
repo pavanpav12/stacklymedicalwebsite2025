@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Hospital | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HAMBURGER FIXED STYLES ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    @media (max-width: 900px) {
+      nav ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+       background: linear-gradient(135deg, #920a80, #176B87);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+      }
+
+      nav ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading MediCare...</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- === LOGO SECTION === -->
+      <div class="logo">
+        <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+        <h1><span></span></h1>
+      </div>
+
+       <nav id="navbar">
+  <ul class="menu">
+    <li class="dropdown">
+      <a href="index.html">Home ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="home2.html">Home2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="buy medicine.html">Medicines</a></li>
+
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ambulane.html">Ambulance</a></li>
+    <li><a href="find doctors.html">Doctors</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQs</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="logout.html">Logout</a></li>
+  </ul>
+</nav>
+
+
+      <!-- ===== FIXED HAMBURGER BUTTON ===== -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  
+
+  
+
+  <script>
+  // ===== HAMBURGER TOGGLE =====
+  const hamburger = document.querySelector('#menu-toggle'); // <-- fixed selector
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('active');
+  });
+
+  // ===== MOBILE DROPDOWN TOGGLE =====
+  const dropdownLinks = document.querySelectorAll('.dropdown > a');
+
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault(); // stop direct link navigation
+        const parent = link.parentElement;
+        parent.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f0faff;
+      color: #333;
+    }
+
+    section.store {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #0077b6;
+      margin-bottom: 40px;
+    }
+
+    .medicine-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .medicine-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .medicine-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .medicine-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .medicine-info {
+      padding: 15px;
+    }
+
+    .medicine-info h3 {
+      margin: 0;
+      color: #04364A;
+    }
+
+    .medicine-info p {
+      color: #555;
+      font-size: 0.9rem;
+      margin: 8px 0;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #0077b6;
+      font-size: 1.1rem;
+    }
+
+    .btn-group {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .add-cart, .buy-now {
+      border: none;
+      padding: 10px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .add-cart {
+      background: #00bfa6;
+    }
+
+    .add-cart:hover {
+      background: #019c89;
+      transform: scale(1.05);
+    }
+
+    .buy-now {
+      background: #0077b6;
+    }
+
+    .buy-now:hover {
+      background: #005f8a;
+      transform: scale(1.05);
+    }
+
+    /* Cart Section */
+    .cart {
+      margin-top: 60px;
+      background: #e8f9fd;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cart h3 {
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .cart ul li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .checkout {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .checkout button {
+      background: #00bfa6;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .checkout button:hover {
+      background: #019c89;
+    }
+
+    /* Payment Section */
+    .payment {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      display: none;
+    }
+
+    .payment h3 {
+      color: #0077b6;
+      margin-bottom: 15px;
+    }
+
+    .payment-methods img {
+      width: 60px;
+      margin: 0 10px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    .payment-methods img:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="store">
+    <h2>Stackly💊 Medicines Store</h2>
+    <div class="medicine-container">
+
+      <div class="medicine-card">
+        <img src="https://images.weserv.nl/?url=images.pexels.com/photos/360622/pexels-photo-360622.jpeg&output=webp"" alt="Paracetamol">
+        <div class="medicine-info">
+          <h3>Paracetamol</h3>
+          <p>Pain relief and fever reducer.</p>
+          <p class="price">₹40</p>
+         <a href="404.html"> <div class="btn-group">
+            <button class="add-cart" data-name="Paracetamol" data-price="40">Add to Cart</button></a>
+           <a href="404.html"></a>    <button class="buy-now" data-name="Paracetamol" data-price="40">Buy Now</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="medicine-card">
+        <img src="seabomed.webp" alt="Amoxicillin">
+        <div class="medicine-info">
+          <h3>Amoxicillin</h3>
+          <p>Antibiotic used to treat infections.</p>
+          <p class="price">₹120</p>
+        <a href="404.html">  <div class="btn-group">
+            <button class="add-cart" data-name="Amoxicillin" data-price="120">Add to Cart</button></a>
+         <a href="404.html">    <button class="buy-now" data-name="Amoxicillin" data-price="120">Buy Now</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="medicine-card">
+        <img src="https://images.weserv.nl/?url=sc04.alicdn.com/kf/H65db3311446b4b85940a84d19416379fu/High-Quality-Customized-Natural-Ascorbic-Acid-Vitamin-C-Tablets-for-Skin-Beauty-and-Health-Care-Supplement.jpg&output=webp" alt="Vitamin C Tablets">
+        <div class="medicine-info">
+          <h3>Vitamin C Tablets</h3>
+          <p>Boosts immunity and skin health.</p>
+          <p class="price">₹85</p>
+        <a href="404.html">  <div class="btn-group">
+            <button class="add-cart" data-name="Vitamin C Tablets" data-price="85">Add to Cart</button></a>
+          <a href="404.html">  <button class="buy-now" data-name="Vitamin C Tablets" data-price="85">Buy Now</button></a> 
+          </div>
+        </div>
+      </div>
+
+      <div class="medicine-card">
+        <img src="https://images.weserv.nl/?url=media.sciencephoto.com/c0/02/52/30/c0025230-800px-wm.jpg&output=webp" alt="Ibuprofen">
+        <div class="medicine-info">
+          <h3>Ibuprofen</h3>
+          <p>Reduces pain, inflammation, and fever.</p>
+          <p class="price">₹90</p>
+          <div class="btn-group">
+            <a href="404.html"><button class="add-cart" data-name="Ibuprofen" data-price="90">Add to Cart</button></a>
+       <a href="404.html">     <button class="buy-now" data-name="Ibuprofen" data-price="90">Buy Now</button></a>
+          </div>
+        </div>
+      </div>
+
+      
+
+       <div class="medicine-card">
+        <img src="https://images.weserv.nl/?url=atlas-content-cdn.pixelsquid.com/stock-images/spilled-pill-bottle-medicine-DxOwl27-600.jpg&output=webp" alt="Multivitamin">
+        <div class="medicine-info">
+          <h3>Multivitamin</h3>
+          <p>Daily essential vitamins for energy.</p>
+          <p class="price">₹150</p>
+          <div class="btn-group">
+         <a href="404.html">  <button class="add-cart" data-name="Multivitamin" data-price="150">Add to Cart</button></a>
+      <a href="404.html">       <button class="buy-now" data-name="Multivitamin" data-price="150">Buy Now</button></a>
+             
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+
+   
+
+  <script>
+    const cartList = document.getElementById('cart-list');
+    const totalEl = document.getElementById('total');
+    const paymentSection = document.getElementById('payment-section');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    let total = 0;
+
+    document.querySelectorAll('.add-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const name = button.dataset.name;
+        const price = parseInt(button.dataset.price);
+        const li = document.createElement('li');
+        li.textContent = `${name} — ₹${price}`;
+        cartList.appendChild(li);
+        total += price;
+        totalEl.textContent = total;
+      });
+    });
+
+    // document.querySelectorAll('.buy-now').forEach(button => {
+    //   button.addEventListener('click', () => {
+    //     const name = button.dataset.name;
+    //     const price = button.dataset.price;
+    //     alert(`You are buying ${name} for ₹${price}. Proceed to payment.`);
+    //     paymentSection.style.display = 'block';
+    //     window.scrollTo({ top: paymentSection.offsetTop, behavior: 'smooth' });
+    //   });
+    // });
+
+    checkoutBtn.addEventListener('click', () => {
+      if (total === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      paymentSection.style.display = 'block';
+      window.scrollTo({ top: paymentSection.offsetTop, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
+
+<style>
+  /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="404.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="404.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+         <ul id="nav-links">
+           <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="buy medicine.html">Buy Medicines</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="find doctors.html">Doctors</a></li>
+           <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+      </div>
+
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

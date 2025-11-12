@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare – Your Health Partner</title>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4776e6, #8e54e9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      width: 130px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ===== NAVBAR ===== */
+    #navbar ul.menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    #navbar ul.menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    #navbar ul.menu li a:hover {
+      color: #00c4a7;
+    }
+
+    /* ===== DROPDOWN ===== */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: blue;
+      list-style: none;
+      padding: 8px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-width: 160px;
+      z-index:9999;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px 18px;
+      color: #0f172a;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .dropdown-menu li a:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    /* Desktop hover dropdown */
+    @media (hover: hover) {
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    @media (max-width: 900px) {
+      #navbar ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(135deg, #176B87, #2515b8);
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+
+      #navbar ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #navbar ul.menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+      #navbar ul.menu li a {
+        display: block;
+        padding: 14px;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      #navbar ul.menu li a:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ✅ MOBILE DROPDOWN FIX */
+      .dropdown.open .dropdown-menu {
+        display: block;
+        position: relative;
+        top: 0;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: none;
+        border-radius: 6px;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        margin-top: 4px;
+      }
+
+      .dropdown-menu li a {
+        color: #e0f2fe;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .dropdown-menu li:last-child a {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+    </div>
+
+    <!-- ===== HAMBURGER ===== -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="home2.html">Home ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Home1</a></li>
+          </ul>
+        </li>
+        <li><a href="Buy Products.html">Baby Products</a></li>
+        <li><a href="buy insurance.html">Buy Insurance</a></li>
+        <li><a href="diagontics.html">Diagnostics</a></li>
+        <li><a href="service.html">Our Services</a></li>
+        <li><a href="contact1.html">Contact</a></li>
+        <li><a href="signup1.html">Signup</a></li>
+        <li><a href="logout1.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== JS ===== -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById("hamburger");
+    const navbarMenu = document.querySelector("#navbar ul.menu");
+
+    hamburger.addEventListener("click", () => {
+      navbarMenu.classList.toggle("active");
+      hamburger.classList.toggle("open");
+    });
+
+    // Dropdown toggle (mobile)
+    const dropdownLinks = document.querySelectorAll(".dropdown > a");
+
+    dropdownLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          const parent = link.parentElement;
+          const isOpen = parent.classList.contains("open");
+
+          // Close other dropdowns
+          document.querySelectorAll(".dropdown.open").forEach(drop => {
+            if (drop !== parent) drop.classList.remove("open");
+          });
+
+          // Toggle current dropdown
+          parent.classList.toggle("open", !isOpen);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+<style>
+    /* ===== MEDICAL INSURANCE SECTION ===== */
+.insurance-section {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  padding: 80px 8%;
+  text-align: center;
+  color: #0f172a;
+  font-family: "Poppins", sans-serif;
+}
+
+.insurance-section h1 {
+  font-size: 2.2rem;
+  color: #0369a1;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.insurance-section p {
+  color: #475569;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== PLAN CARDS ===== */
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.plan-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.1);
+  padding: 30px 25px;
+  width: 300px;
+  transition: all 0.3s ease;
+  border-top: 5px solid transparent;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  border-top-color: #0284c7;
+  box-shadow: 0 15px 30px rgba(2, 132, 199, 0.2);
+}
+
+.plan-card h2 {
+  font-size: 1.5rem;
+  color: #0284c7;
+  margin-bottom: 8px;
+}
+
+.plan-card .price {
+  font-size: 1.3rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.plan-card ul li {
+  padding: 6px 0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-card ul li::before {
+  content: "✔";
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* ===== BUTTON ===== */
+.plan-card button {
+  background: #0284c7;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.plan-card button:hover {
+  background: #0369a1;
+  transform: scale(1.05);
+}
+
+/* ===== COMPARE TABLE ===== */
+.compare-section {
+  margin-top: 60px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  padding: 30px;
+  overflow-x: auto;
+}
+
+.compare-section h2 {
+  text-align: center;
+  color: #0284c7;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.compare-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.compare-table tr:hover {
+  background: #f9fafb;
+  transition: 0.3s;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+  }
+
+  .compare-table {
+    font-size: 0.85rem;
+  }
+}
+/* ===== POPUP STYLES ===== */
+.insurance-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+.insurance-popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-content {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  animation: popupFade 0.4s ease;
+}
+
+@keyframes popupFade {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-content h2 {
+  color: #0284c7;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup-content input {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.popup-content button {
+  background: #0284c7;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popup-content button:hover {
+  background: #0369a1;
+}
+
+#closePopup {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+#closePopup:hover {
+  background: #cbd5e1;
+}
+
+</style>
+<section class="insurance-section">
+  <h1>Buy Medical Insurance</h1>
+  <p>Choose the best health insurance plan for your family with complete coverage and flexible premiums.</p>
+
+  <div class="plans-container">
+    <div class="plan-card">
+      <h2>Basic Plan</h2>
+      <p class="price">₹2,999 / year</p>
+      <ul>
+        <li>₹2L Coverage</li>
+        <li>Hospitalization Cover</li>
+        <li>24-Month Waiting Period</li>
+      </ul>
+     <a href="4041.html"> <button>Buy Now</button></a>
+    </div>
+
+    <div class="plan-card">
+      <h2>Standard Plan</h2>
+      <p class="price">₹6,499 / year</p>
+      <ul>
+        <li>₹5L Coverage</li>
+        <li>Family Floater</li>
+        <li>12-Month Waiting Period</li>
+      </ul>
+   <a href="4041.html">   <button>Buy Now</button></a>
+    </div>
+
+    <div class="plan-card">
+      <h2>Premium Plan</h2>
+      <p class="price">₹12,499 / year</p>
+      <ul>
+        <li>₹10L Coverage</li>
+        <li>OPD & Maternity</li>
+        <li>6-Month Waiting Period</li>
+      </ul>
+  <a href="4041.html">  <button>Buy Now</button></a>
+    </div>
+  </div>
+
+  <div class="compare-section">
+    <h2>Compare Plans</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Basic</th>
+          <th>Standard</th>
+          <th>Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Coverage Amount</td><td>₹2L</td><td>₹5L</td><td>₹10L</td></tr>
+        <tr><td>Family Floater</td><td>—</td><td>✓</td><td>✓</td></tr>
+        <tr><td>OPD Cover</td><td>—</td><td>₹5k</td><td>₹15k</td></tr>
+        <tr><td>Cashless Hospitals</td><td>1200+</td><td>3000+</td><td>6000+</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<script>
+// ===== MEDICAL INSURANCE BUY FORM SCRIPT =====
+document.addEventListener("DOMContentLoaded", () => {
+  // Create popup dynamically
+  const popup = document.createElement("div");
+  popup.classList.add("insurance-popup");
+  popup.innerHTML = `
+    <div class="popup-content">
+      <h2>Buy Insurance Plan</h2>
+      <form id="buyForm">
+        <input type="text" id="planName" readonly>
+        <input type="text" id="planPrice" readonly>
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required maxlength="10">
+        <button type="submit">Confirm Purchase</button>
+        <button type="button" id="closePopup">Cancel</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  // Select buy buttons
+  const buyButtons = document.querySelectorAll(".plan-card button");
+
+  // When user clicks Buy Now
+  buyButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".plan-card");
+      const name = card.querySelector("h2").textContent;
+      const price = card.querySelector(".price").textContent;
+
+      document.getElementById("planName").value = name;
+      document.getElementById("planPrice").value = price;
+
+      popup.classList.add("show");
+    });
+  });
+
+  // Close popup
+  document.addEventListener("click", (e) => {
+    if (e.target.id === "closePopup" || e.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+
+  // ===== FORM VALIDATION =====
+  document.addEventListener("submit", (e) => {
+    if (e.target && e.target.id === "buyForm") {
+      e.preventDefault();
+
+      const name = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      // ✅ Name validation — only alphabets and spaces allowed
+      const namePattern = /^[A-Za-z\s]+$/;
+      if (!namePattern.test(name)) {
+        alert("❌ Please enter a valid name (letters and spaces only).");
+        return;
+      }
+
+      // ✅ Email validation — standard pattern
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        alert("❌ Please enter a valid email address.");
+        return;
+      }
+
+      // ✅ Phone validation — exactly 10 digits
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(phone)) {
+        alert("❌ Please enter a valid 10-digit phone number.");
+        return;
+      }
+
+      // ✅ If all valid
+      alert("✅ Thank you! Your insurance plan has been purchased successfully.");
+      e.target.reset();
+      popup.classList.remove("show");
+    }
+  });
+
+  // ===== OPTIONAL: Prevent invalid characters during typing =====
+  document.getElementById("fullName").addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); // only letters/spaces
+  });
+
+  document.getElementById("phone").addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, ""); // only digits
+  });
+});
+</script>
+
+<!-- ====== ADVANCED ANIMATED FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+<style>
+   /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="4041.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="4041.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="4041.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="4041.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="home2.html"> Home</a></li>
+          <li><a href="Buy Products.html">Baby Products</a></li>
+          <li><a href="buy insurance.html">Buy Insurance</a></li>
+          <li><a href="diagontics.html">Diagnostics</a></li>
+          <li><a href="service.html"> Our Services</a></li>
+          <li><a href="contact1.html"> Contact</a></li>
+          <li><a href="signup1.html"> Signup</a></li>
+        </ul>
+      </div>
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Hospital | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HAMBURGER FIXED STYLES ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    @media (max-width: 900px) {
+      nav ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+       background: linear-gradient(135deg, #920a80, #176B87);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+      }
+
+      nav ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading MediCare...</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- === LOGO SECTION === -->
+      <div class="logo">
+        <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+        <h1><span></span></h1>
+      </div>
+
+      <nav id="navbar">
+  <ul class="menu">
+    <li class="dropdown">
+      <a href="index.html">Home ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="home2.html">Home2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="buy medicine.html">Medicines</a></li>
+
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ambulane.html">Ambulance</a></li>
+    <li><a href="find doctors.html">Doctors</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQs</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="logout.html">Logout</a></li>
+  </ul>
+</nav>
+
+      <!-- ===== FIXED HAMBURGER BUTTON ===== -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <script>
+  // ===== HAMBURGER TOGGLE =====
+  const hamburger = document.querySelector('#menu-toggle'); // <-- fixed selector
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('active');
+  });
+
+  // ===== MOBILE DROPDOWN TOGGLE =====
+  const dropdownLinks = document.querySelectorAll('.dropdown > a');
+
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault(); // stop direct link navigation
+        const parent = link.parentElement;
+        parent.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+<style>
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== Blog Section ===== */
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 50px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 20px;
+    }
+
+    .category {
+      background: #e9f2ff;
+      color: #007bff;
+      padding: 5px 12px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .blog-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .blog-content h3:hover {
+      color: #007bff;
+    }
+
+    .blog-content p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #007bff;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<!-- ===== BLOG SECTION ===== -->
+<section class="blog-section" id="blog">
+  <h1>Latest Health & Wellness Articles</h1>
+  <p class="blog-intro">Stay informed with expert insights, health tips, and the latest updates in the medical world.</p>
+
+  <div class="blog-container">
+    <!-- 1 -->
+    <div class="blog-card">
+      <img src="Gemini_Generated_Image_m5a5mem5a5mem5a5.webp" alt="Healthy Living">
+      <div class="blog-content">
+        <span class="category">Wellness</span>
+        <h3>Importance of Mental Health in Everyday Life</h3>
+        <p>Mental health plays a vital role in your overall well-being. Learn how to nurture your mind and maintain emotional balance.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="blog-card">
+      <img src="cardilogy.webp" alt="Heart Care">
+      <div class="blog-content">
+        <span class="category">Cardiology</span>
+        <h3>10 Heart-Healthy Habits You Can Start Today</h3>
+        <p>Discover daily practices that can reduce your risk of heart disease and boost your cardiovascular health naturally.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="blog-card">
+      <img src="Gemini_Generated_Image_61axmg61axmg61ax.webp" alt="Nutrition Tips">
+      <div class="blog-content">
+        <span class="category">Nutrition</span>
+        <h3>Healthy Eating: The Ultimate Guide to Balanced Diets</h3>
+        <p>Learn how to combine nutrients and maintain a diet that fuels your energy while keeping diseases at bay.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="blog-card">
+      <img src="Gemini_Generated_Image_pdspvtpdspvtpdsp.webp" alt="Fitness">
+      <div class="blog-content">
+        <span class="category">Fitness</span>
+        <h3>Simple Exercises for a Healthier Lifestyle</h3>
+        <p>Staying active doesn’t need a gym. Try these simple workouts to strengthen your body and boost your confidence.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="blog-card">
+      <img src="cardilogy.webp" alt="Diagnostics">
+      <div class="blog-content">
+        <span class="category">Diagnostics</span>
+        <h3>Why Regular Health Checkups Are Important</h3>
+        <p>Routine checkups can detect potential health issues early, helping you stay one step ahead of serious conditions.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="blog-card">
+      <img src="Gemini_Generated_Image_g4uhgkg4uhgkg4uh.webp" alt="Healthcare Technology">
+      <div class="blog-content">
+        <span class="category">Innovation</span>
+        <h3>How Technology is Modern Healthcare</h3>
+        <p>From AI diagnostics to telemedicine,how innovation is reshaping patient care and hospital management.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+    <div class="blog-card">
+      <img src="doctor5.webp" alt="Healthcare Technology">
+      <div class="blog-content">
+        <span class="category">Doctors</span>
+        <h3>How Technology is Specialists Healthcare</h3>
+        <p>From AI diagnostics to telemedicine,how innovation is reshaping patient care and hospital management.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+  </div>
+  </div>
+  <div class="blog-card">
+      <img src="Gemini_Generated_Image_ck0hlock0hlock0h.webp" alt="Healthcare Technology">
+      <div class="blog-content">
+        <span class="category">Information</span>
+        <h3>The Technology is Modern Healthcare</h3>
+        <p>From AI diagnostics to telemedicine,how innovation is reshaping patient care and hospital management.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+  </div>
+  </div>
+</section>
+
+<!-- ===== BLOG SECTION CSS ===== -->
+<style>
+  .blog-section {
+   
+    padding: 80px 20px;
+    background: #f8fafc;
+    text-align: center;
+  }
+
+  .blog-section h1 {
+    font-size: 2.2rem;
+    color: #176B87;
+    margin-bottom: 10px;
+  }
+
+  .blog-intro {
+    color: #475569;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .blog-container {
+     overflow-x: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .blog-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .blog-content {
+    padding: 20px;
+    text-align: left;
+  }
+
+  .category {
+    display: inline-block;
+    background: #00bfa5;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .blog-content h3 {
+    font-size: 1.25rem;
+    color: #176B87;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .blog-content p {
+    font-size: 0.95rem;
+    color: #475569;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .read-more {
+    text-decoration: none;
+    color: #00bfa5;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .read-more:hover {
+    color: #176B87;
+    text-decoration: underline;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Subtle fade-in animation */
+  .blog-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s forwards;
+  }
+
+  .blog-card:nth-child(1) { animation-delay: 0.1s; }
+  .blog-card:nth-child(2) { animation-delay: 0.2s; }
+  .blog-card:nth-child(3) { animation-delay: 0.3s; }
+  .blog-card:nth-child(4) { animation-delay: 0.4s; }
+  .blog-card:nth-child(5) { animation-delay: 0.5s; }
+  .blog-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+
+  <section class="blog-container">
+    <div class="blog-card">
+      <img src="https://img.freepik.com/free-photo/doctor-writing-patient-notes_53876-14539.jpg" alt="Doctor Writing Notes">
+      <div class="blog-content">
+        <span class="category">Healthcare</span>
+        <h3>Top 5 Tips for Managing Diabetes Effectively</h3>
+        <p>Learn essential strategies to keep your blood sugar in control and lead a healthy lifestyle with diabetes management insights.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://images.weserv.nl/?url=img.freepik.com/free-photo/doctor-showing-x-ray-patient_23-2147860030.jpg&output=webp" alt="X-ray checkup">
+      <div class="blog-content">
+        <span class="category">Diagnostics</span>
+        <h3>How AI is Transforming Modern Diagnostics</h3>
+        <p>Discover how artificial intelligence is revolutionizing the medical diagnostic process and improving accuracy for patients.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://images.weserv.nl/?url=img.freepik.com/free-photo/young-woman-practicing-yoga_1098-14673.jpg&output=webp" alt="Healthy Living">
+      <div class="blog-content">
+        <span class="category">Wellness</span>
+        <h3>Importance of Mental Health in Everyday Life</h3>
+        <p>Mental health plays a vital role in your overall well-being. Learn how to nurture your mind and maintain emotional balance.</p>
+        <a href="404.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <style>
+    /* ===== Global Styles ===== */
+    
+    /* ===== Blog Section ===== */
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 60px 50px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 20px;
+    }
+
+    .category {
+      background: #e9f2ff;
+      color: #007bff;
+      padding: 5px 12px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .blog-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .blog-content h3:hover {
+      color: #007bff;
+    }
+
+    .blog-content p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    /* ===== Customer Reviews Section ===== */
+    .reviews-section {
+      background: #fff;
+      margin: 60px 50px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .reviews-section h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .review-card {
+      background: #f9fbff;
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .review-header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid #007bff;
+    }
+
+    .review-header h4 {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .stars {
+      color: #fbbf24;
+      font-size: 1.1rem;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #007bff;
+      color: #fff;
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  
+
+ 
+
+
+  
+   <style>
+  /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="404.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="404.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+         <ul id="nav-links">
+           <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="buy medicine.html">Buy Medicines</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="find doctors.html">Doctors</a></li>
+           <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+      </div>
+
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

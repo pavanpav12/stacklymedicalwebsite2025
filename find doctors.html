@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Hospital | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HAMBURGER FIXED STYLES ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    @media (max-width: 900px) {
+      nav ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+       background: linear-gradient(135deg, #920a80, #176B87);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+      }
+
+      nav ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading MediCare...</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- === LOGO SECTION === -->
+      <div class="logo">
+        <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+        <h1><span></span></h1>
+      </div>
+
+       <nav id="navbar">
+  <ul class="menu">
+    <li class="dropdown">
+      <a href="index.html">Home ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="home2.html">Home2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="buy medicine.html">Medicines</a></li>
+
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ambulane.html">Ambulance</a></li>
+    <li><a href="find doctors.html">Doctors</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQs</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="logout.html">Logout</a></li>
+  </ul>
+</nav>
+      <!-- ===== FIXED HAMBURGER BUTTON ===== -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  
+
+  
+
+  <script>
+  // ===== HAMBURGER TOGGLE =====
+  const hamburger = document.querySelector('#menu-toggle'); // <-- fixed selector
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('active');
+  });
+
+  // ===== MOBILE DROPDOWN TOGGLE =====
+  const dropdownLinks = document.querySelectorAll('.dropdown > a');
+
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault(); // stop direct link navigation
+        const parent = link.parentElement;
+        parent.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fff);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-top: 40px;
+      color: #0b6fa4;
+      text-transform: uppercase;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0097a7;
+      margin: 30px 0 10px;
+      font-size: 1.8rem;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ffffff, #f1f8e9);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: popIn 1s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    }
+
+    .card img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: rotate(10deg) scale(1.2);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Find Doctors</h1>
+<h2>By Specialization</h2>
+<section class="section">
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/stethoscope.png&output=webp" alt="General Medicine">
+    <h3>General Medicine</h3>
+    <p>Experienced general physicians providing comprehensive healthcare.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/baby.png&output=webp" alt="Pediatrics">
+    <h3>Pediatrics</h3>
+    <p>Specialists dedicated to the health and wellness of children.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/heart-with-pulse.png&output=webp" alt="Cardiology">
+    <h3>Cardiology</h3>
+    <p>Expert cardiologists offering heart care and diagnosis services.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/brain.png&output=webp" alt="Neurology">
+    <h3>Neurology</h3>
+    <p>Top neurologists specializing in brain and nervous system disorders.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/lungs.png&output=webp" alt="Pulmonology">
+    <h3>Pulmonology</h3>
+    <p>Specialized doctors treating respiratory and lung-related issues.</p>
+  </div>
+</section>
+
+<h2>By Symptoms</h2>
+<section class="section">
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/thermometer.png&output=webp" alt="Fever">
+    <h3>Fever</h3>
+    <p>Get consultation for persistent or high fever symptoms.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/headache.png&output=webp" alt="Headache">
+    <h3>Headache</h3>
+    <p>Find experts to treat chronic headaches and migraines.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/lungs.png&output=webp" alt="Cough">
+    <h3>Cough</h3>
+    <p>Consult doctors for long-lasting cough and throat irritation.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/back-pain.png&output=webp" alt="Back Pain">
+    <h3>Back Pain</h3>
+    <p>Orthopedic specialists available for posture and pain relief.</p>
+  </div>
+  <div class="card">
+    <img src="https://images.weserv.nl/?url=img.icons8.com/color/96/stomach.png&output=webp" alt="Stomach Pain">
+    <h3>Stomach Pain</h3>
+    <p>Get treatment from gastroenterologists for abdominal issues.</p>
+  </div>
+</section>
+
+</section>
+
+  
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+
+
+    
+   
+
+   
+  </style>
+</head>
+<body>
+
+  <h1>Find Doctors</h1>
+
+  <!-- By Specialization -->
+  <h2>By Specialization</h2>
+  <section class="section">
+    <div class="card">
+      <img src="doctor1.webp" alt="General Physician">
+      <h3>Dr. Rashika Mehta</h3>
+      <p>General Medicine</p>
+      <p>10+ years experience</p>
+      <p class="contact">📞 +91 98765 43210</p>
+    </div>
+
+    <div class="card">
+      <img src="docto2.webp" alt="Pediatrician">
+      <h3>Dr. Asha Kapoor</h3>
+      <p>Pediatrics Specialist</p>
+      <p>8+ years experience</p>
+      <p class="contact">📞 +91 91234 56789</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor3.webp" alt="Cardiologist">
+      <h3>Dr. Rahul Singh</h3>
+      <p>Cardiologist</p>
+      <p>12+ years experience</p>
+      <p class="contact">📞 +91 99887 66554</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor4.webp" alt="Neurologist">
+      <h3>Dr. Nehal Sharma</h3>
+      <p>Neurology Specialist</p>
+      <p>9+ years experience</p>
+      <p class="contact">📞 +91 90909 80808</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor5.webp" alt="Pulmonologist">
+      <h3>Dr. Arvind Kumar</h3>
+      <p>Pulmonologist</p>
+      <p>11+ years experience</p>
+      <p class="contact">📞 +91 98770 11123</p>
+    </div>
+  </section>
+
+  <!-- By Symptoms -->
+  <h2>By Symptoms</h2>
+  <section class="section">
+    <div class="card">
+      <img src="doctor6.webp" alt="Fever Doctor">
+      <h3>Dr. Kavita Menon</h3>
+      <p>Fever and Viral Infection Specialist</p>
+      <p>7+ years experience</p>
+      <p class="contact">📞 +91 90900 22233</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor1.webp" alt="Headache Doctor">
+      <h3>Dr. Anjali Nair</h3>
+      <p>Headache and Migraine Expert</p>
+      <p>10+ years experience</p>
+      <p class="contact">📞 +91 91234 12345</p>
+    </div>
+
+    <div class="card">
+      <img src="docto2.webp" alt="Cough Doctor">
+      <h3>Dr. Sneha Patel</h3>
+      <p>Respiratory and Allergy Specialist</p>
+      <p>6+ years experience</p>
+      <p class="contact">📞 +91 90000 11223</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor3.webp" alt="Back Pain Doctor">
+      <h3>Dr. Soni</h3>
+      <p>Orthopedic & Spine Specialist</p>
+      <p>15+ years experience</p>
+      <p class="contact">📞 +91 99999 77777</p>
+    </div>
+
+    <div class="card">
+      <img src="doctor4.webp" alt="Stomach Pain Doctor">
+      <h3>Dr. Deshmukh</h3>
+      <p>Gastroenterologist</p>
+      <p>9+ years experience</p>
+      <p class="contact">📞 +91 88888 44444</p>
+    </div>
+  </section>
+
+
+
+</body>
+</html>
+
+<!-- ====== ADVANCED ANIMATED FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+<style>
+   /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="404.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="404.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+         <ul id="nav-links">
+           <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="buy medicine.html">Buy Medicines</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="find doctors.html">Doctors</a></li>
+           <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+      </div>
+
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

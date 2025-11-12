@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Hospital | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HAMBURGER FIXED STYLES ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    @media (max-width: 900px) {
+      nav ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+       background: linear-gradient(135deg, #920a80, #176B87);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+      }
+
+      nav ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading MediCare...</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- === LOGO SECTION === -->
+      <div class="logo">
+        <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+        <h1><span></span></h1>
+      </div>
+
+       <nav id="navbar">
+  <ul class="menu">
+    <li class="dropdown">
+      <a href="index.html">Home ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="home2.html">Home2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="buy medicine.html">Medicines</a></li>
+
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ambulane.html">Ambulance</a></li>
+    <li><a href="find doctors.html">Doctors</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQs</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="logout.html">Logout</a></li>
+  </ul>
+</nav>
+
+      <!-- ===== FIXED HAMBURGER BUTTON ===== -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  
+<style>
+  /* ===== Hero Section ===== */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("https://img.freepik.com/free-photo/doctor-using-digital-tablet-with-medical-icon-connection_53876-124502.jpg") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+:root {
+  --bg1: #0a1128;
+  --bg2: #001845;
+  --road: #0f172a;
+  --line: black;
+  --accent: #176B87;   /* fixed invalid 'bl' value */
+  --error: black;
+  --card: white;
+  --text: black;
+  --muted: black;
+}
+
+
+
+/* BOOKING FORM */
+.form-section{
+  display:flex;
+  justify-content:center;
+  padding:60px 20px;
+}
+
+form{
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  max-width:700px;
+  width:100%;
+}
+
+form h2{
+  text-align:center;
+  margin-bottom:20px;
+  background:linear-gradient(90deg,#38bdf8,#22d3ee);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+label{
+  font-size:14px;
+  color:var(--muted);
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  border:2px solid;
+  border-radius:8px;
+  margin-top:6px;
+  background:rgba(255,255,255,0.05);
+  color:var(--text);
+  outline: 2px;
+  border:1px solid transparent;
+  transition:.2s;
+}
+
+input:focus, select:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 8px rgba(0,224,255,.3);
+}
+
+.error{
+  border-color:var(--error)!important;
+}
+
+.error-text{
+  color:var(--error);
+  font-size:12px;
+  display:none;
+}
+
+.btn{
+  width:100%;
+  background:linear-gradient(90deg,#22d3ee,#60a5fa);
+  border:none;
+  color:#000;
+  font-weight:700;
+  padding:14px;
+  border-radius:10px;
+  margin-top:20px;
+  cursor:pointer;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-2px);}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <h1>24x7 ambulance Services</h1>
+    <p>Our Ambulance Service ensures fast, reliable, and 24/7 emergency medical transport.</p>
+  </section>
+
+<section class="form-section">
+  <form id="bookingForm" novalidate>
+    <h2>Book an Ambulance</h2>
+
+    <label for="name">Full Name (letters only)</label>
+    <input type="text" id="name" name="name" required pattern="[A-Za-z ]+">
+    <div class="error-text" id="nameErr">Please enter only letters and spaces.</div>
+
+    <label for="phone">Phone (digits only)</label>
+    <input type="text" id="phone" name="phone" required pattern="[0-9]+">
+    <div class="error-text" id="phoneErr">Please enter digits only.</div>
+
+    <label for="state">State</label>
+    <select id="state" required>
+      <option value="">Select State</option>
+      <option>Karnataka</option>
+      <option>Tamil Nadu</option>
+      <option>Kerala</option>
+      <option>Maharashtra</option>
+      <option>Telangana</option>
+    </select>
+    <div class="error-text" id="stateErr">Select a state.</div>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+    <div class="error-text" id="emailErr">Enter valid email.</div>
+
+    
+
+    <button class="btn" type="submit">Request Ambulance</button>
+  </form>
+</section>
+
+<script>
+  document.getElementById("bookingForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop form from submitting normally
+    window.location.href = "404.html"; // redirect to 404 page
+  });
+</script>
+
+<script>
+const districtMap = {
+  'Karnataka':['Bengaluru Urban','Mysuru','Tumakuru','Mangaluru'],
+  'Tamil Nadu':['Chennai','Coimbatore','Salem','Madurai'],
+  'Kerala':['Kochi','Trivandrum','Kozhikode'],
+  'Maharashtra':['Mumbai','Pune','Nagpur','Nashik'],
+  'Telangana':['Hyderabad','Warangal','Nizamabad']
+};
+
+const stateSel=document.getElementById('state');
+const distSel=document.getElementById('district');
+
+stateSel.addEventListener('change',()=>{
+  const dists=districtMap[stateSel.value]||[];
+  distSel.innerHTML='<option value=\"\">Select District</option>'+dists.map(d=>`<option>${d}</option>`).join('');
+  distSel.disabled=dists.length===0;
+});
+
+document.getElementById('name').addEventListener('input',e=>{
+  e.target.value=e.target.value.replace(/[^A-Za-z ]+/g,'');
+});
+document.getElementById('phone').addEventListener('input',e=>{
+  e.target.value=e.target.value.replace(/[^0-9]+/g,'');
+});
+
+const form=document.getElementById('bookingForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('name');
+  const phone=document.getElementById('phone');
+  const email=document.getElementById('email');
+  let valid=true;
+
+  if(!name.value.match(/^[A-Za-z ]+$/)){showErr(name,'nameErr');valid=false;}else{hideErr(name,'nameErr');}
+  if(!phone.value.match(/^[0-9]{10,15}$/)){showErr(phone,'phoneErr');valid=false;}else{hideErr(phone,'phoneErr');}
+  if(!stateSel.value){showErr(stateSel,'stateErr');valid=false;}else{hideErr(stateSel,'stateErr');}
+  if(!distSel.value){showErr(distSel,'districtErr');valid=false;}else{hideErr(distSel,'districtErr');}
+  if(!email.value.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/)){showErr(email,'emailErr');valid=false;}else{hideErr(email,'emailErr');}
+
+  if(valid){
+    alert('✅ Booking submitted successfully!');
+    form.reset();
+    distSel.disabled=true;
+  }
+});
+
+function showErr(el,id){document.getElementById(id).style.display='block';el.classList.add('error');}
+function hideErr(el,id){document.getElementById(id).style.display='none';el.classList.remove('error');}
+</script>
+</body>
+</html>
+<!-- ====== ADVANCED ANIMATED FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+<style>
+   <style>
+  /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="404.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="404.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+         <ul id="nav-links">
+           <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="buy medicine.html">Buy Medicines</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="find doctors.html">Doctors</a></li>
+           <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+      </div>
+
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  

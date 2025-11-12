@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logout | Stackly Digital</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<!-- ===== FLOATING ICONS BACKGROUND ===== -->
+<div class="floating-icons">
+  <div class="icon">💊</div>
+  <div class="icon">🩺</div>
+  <div class="icon">🧬</div>
+  <div class="icon">❤️</div>
+  <div class="icon">💉</div>
+  <div class="icon">👨‍⚕️</div>
+  <div class="icon">🧫</div>
+  <div class="icon">⚕️</div>
+</div>
+
+<!-- ===== CSS ===== -->
+<style>
+  /* ===== ICON BACKGROUND ANIMATION ===== */
+  .floating-icons {
+    position: fixed;              /* stays behind all content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;                 /* pushes icons behind content */
+    pointer-events: none;        /* prevents blocking clicks */
+    background: linear-gradient(135deg, #176B87, #00c4a7);
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.12;
+    animation: floatUp 15s linear infinite;
+    user-select: none;
+  }
+
+  /* ===== ANIMATION ===== */
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.2;
+    }
+    50% {
+      transform: translateY(50vh) rotate(180deg);
+      opacity: 0.25;
+    }
+    75% {
+      opacity: 0.15;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* ===== RANDOM PLACEMENT ===== */
+  .icon:nth-child(1) { left: 5%;  animation-duration: 18s; font-size: 2rem; }
+  .icon:nth-child(2) { left: 20%; animation-duration: 22s; font-size: 2.8rem; }
+  .icon:nth-child(3) { left: 40%; animation-duration: 19s; font-size: 3rem; }
+  .icon:nth-child(4) { left: 60%; animation-duration: 24s; font-size: 2.4rem; }
+  .icon:nth-child(5) { left: 80%; animation-duration: 20s; font-size: 3.2rem; }
+  .icon:nth-child(6) { left: 10%; animation-duration: 25s; font-size: 2.6rem; }
+  .icon:nth-child(7) { left: 50%; animation-duration: 21s; font-size: 2.2rem; }
+  .icon:nth-child(8) { left: 90%; animation-duration: 23s; font-size: 3rem; }
+
+  /* ===== OPTIONAL GLOW ===== */
+  .icon::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+</style>
+
+
+<body class="logout-body">
+  <div class="logout-container">
+    <h2>You have logged out successfully!</h2>
+    <a href="index.html" class="btn login-btn">🏠 Back to Home</a>
+   
+  </div>
+
+  <footer>
+    <p>© 2025 Stackly Digital | Designed by Pavan Gowda</p>
+  </footer>
+</body>
+</html>
+<style>
+  /* ===== Logout Page Styles ===== */
+body.logout-body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0062ff, #5bc0de);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: #fff;
+}
+
+/* ===== Container ===== */
+.logout-container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px 70px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.2s ease;
+}
+
+.logout-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
+  background: #fff;
+  color: #0062ff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #0062ff;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Footer ===== */
+footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 100%;
+  color: #f1f1f1;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+  .logout-container {
+    width: 85%;
+    padding: 40px 20px;
+  }
+
+  .logout-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+</style>

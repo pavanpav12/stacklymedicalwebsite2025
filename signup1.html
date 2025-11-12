@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare – Your Health Partner</title>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4776e6, #8e54e9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      width: 130px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ===== NAVBAR ===== */
+    #navbar ul.menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    #navbar ul.menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    #navbar ul.menu li a:hover {
+      color: #00c4a7;
+    }
+
+    /* ===== DROPDOWN ===== */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: blue;
+      list-style: none;
+      padding: 8px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-width: 160px;
+      z-index: 999;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px 18px;
+      color: #0f172a;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .dropdown-menu li a:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    /* Desktop hover dropdown */
+    @media (hover: hover) {
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    @media (max-width: 900px) {
+      #navbar ul.menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(135deg, #176B87, #2515b8);
+        padding: 20px 0;
+        transform: translateY(-200%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+
+      #navbar ul.menu.active {
+        transform: translateY(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #navbar ul.menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+      #navbar ul.menu li a {
+        display: block;
+        padding: 14px;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      #navbar ul.menu li a:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ✅ MOBILE DROPDOWN FIX */
+      .dropdown.open .dropdown-menu {
+        display: block;
+        position: relative;
+        top: 0;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: none;
+        border-radius: 6px;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        margin-top: 4px;
+      }
+
+      .dropdown-menu li a {
+        color: #e0f2fe;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .dropdown-menu li:last-child a {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+    </div>
+
+    <!-- ===== HAMBURGER ===== -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="home2.html">Home ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Home1</a></li>
+          </ul>
+        </li>
+        <li><a href="Buy Products.html">Baby Products</a></li>
+        <li><a href="buy insurance.html">Buy Insurance</a></li>
+        <li><a href="diagontics.html">Diagnostics</a></li>
+        <li><a href="service.html">Our Services</a></li>
+        <li><a href="contact1.html">Contact</a></li>
+        <li><a href="signup1.html">Signup</a></li>
+        <li><a href="logout1.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== JS ===== -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById("hamburger");
+    const navbarMenu = document.querySelector("#navbar ul.menu");
+
+    hamburger.addEventListener("click", () => {
+      navbarMenu.classList.toggle("active");
+      hamburger.classList.toggle("open");
+    });
+
+    // Dropdown toggle (mobile)
+    const dropdownLinks = document.querySelectorAll(".dropdown > a");
+
+    dropdownLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          const parent = link.parentElement;
+          const isOpen = parent.classList.contains("open");
+
+          // Close other dropdowns
+          document.querySelectorAll(".dropdown.open").forEach(drop => {
+            if (drop !== parent) drop.classList.remove("open");
+          });
+
+          // Toggle current dropdown
+          parent.classList.toggle("open", !isOpen);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+  <style>
+    :root{
+      --bg1:#1d3557;
+      --bg2:#457b9d;
+      --accent:#00bfa6;
+      --card-bg:#ffffff;
+      --muted:#6b7280;
+      --radius:12px;
+      font-family: "Poppins", system-ui, Arial, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:#111827;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-top:90px; /* Push down for fixed header */
+      padding-bottom:20px;
+    }
+header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background:#6f21ee;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      z-index: 1000;
+    }
+
+   
+    
+    /* ===== SIGNUP CARD ===== */
+    .card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:32px 28px;
+      max-width:700px;
+      width:100%;
+      box-shadow:0 14px 40px rgba(0,0,0,.18);
+      margin-top:30px;
+    }
+
+    h1{
+      font-size:24px;
+      text-align:center;
+      color:var(--accent);
+      margin-bottom:20px;
+    }
+
+    form{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px 18px;
+    }
+
+    label{font-size:13px;color:#374151;margin-bottom:6px;display:block}
+    input, select, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#fbfbfb;
+      font-size:14px;
+      color:#0f172a;
+    }
+    textarea{resize:vertical}
+    .full{grid-column:1 / -1;}
+
+    button[type="submit"]{
+      grid-column:1 / -1;
+      padding:12px 16px;
+      border:0;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      font-size:15px;
+      transition:background 0.3s;
+    }
+    button:hover{background:#00a893;}
+
+    .note{grid-column:1 / -1;text-align:center;color:var(--muted);margin-top:10px;font-size:14px}
+    .note a{color:var(--accent);text-decoration:none;font-weight:600}
+
+    .error{color:#b91c1c;font-size:13px;margin-top:6px;min-height:18px}
+
+    .success{
+      position:fixed;
+      left:50%;
+      top:20%;
+      transform:translateX(-50%);
+      background-color: #8e54e9;
+      color:#fff;
+      padding:18px 22px;
+      border-radius:10px;
+      box-shadow:0 8px 30px rgba(0,0,0,.25);
+      display:none;
+      z-index:9999;
+    }
+
+    @media(max-width:720px){
+      form{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  
+
+  <!-- ===== SIGNUP CARD ===== -->
+  <!-- ===== SIGNUP CARD ===== -->
+<div class="card" aria-labelledby="signup-heading">
+  <h1 id="signup-heading">Create Your MediCare Account</h1>
+
+  <form id="signupForm" autocomplete="off" novalidate>
+    <div>
+      <label for="firstname">First Name</label>
+      <input id="firstname" name="firstname" type="text" placeholder="John">
+    </div>
+
+    <div>
+      <label for="lastname">Last Name</label>
+      <input id="lastname" name="lastname" type="text" placeholder="Doe">
+    </div>
+
+    <div>
+      <label for="email">Email Address</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com">
+    </div>
+
+    <div>
+      <label for="phone">Phone Number</label>
+      <input id="phone" name="phone" type="text" maxlength="10" placeholder="9876543210">
+    </div>
+
+    <div class="full">
+      <label for="address">Address</label>
+      <input id="address" name="address" type="text" placeholder="House no, street, area">
+    </div>
+
+    <div>
+      <label for="city">City</label>
+      <input id="city" name="city" type="text" placeholder="Bangalore">
+    </div>
+
+    <div>
+      <label for="pincode">Pincode</label>
+      <input id="pincode" name="pincode" type="text" maxlength="6" placeholder="560001">
+    </div>
+
+    <div>
+      <label for="medical_speciality">Medical Interest / Department</label>
+      <select id="medical_speciality" name="medical_speciality">
+        <option value="">Select</option>
+        <option>General Medicine</option>
+        <option>Cardiology</option>
+        <option>Neurology</option>
+        <option>Orthopedics</option>
+        <option>Pediatrics</option>
+        <option>Gynecology</option>
+        <option>Others</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="experience">Years of Experience (if Doctor)</label>
+      <input id="experience" name="experience" type="number" min="0" max="50" placeholder="5">
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" minlength="6" placeholder="Enter password">
+    </div>
+
+    <div>
+      <label for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" name="confirm_password" type="password" minlength="6" placeholder="Re-enter password">
+    </div>
+
+    <div class="full">
+      <label for="about">About / Additional Info</label>
+      <textarea id="about" name="about" placeholder="Tell us about yourself or your healthcare needs..." rows="3"></textarea>
+    </div>
+
+    <!-- ✅ Correct button (no <a> tag) -->
+    <button type="submit" id="createBtn">Create Account</button>
+
+    <div class="note">Already have an account? <a href="signin.html">Sign In</a></div>
+  </form>
+</div>
+
+<div id="success" class="success" role="status">✅ Account created — redirecting...</div>
+
+<!-- ===== Script to redirect to 404.html on click ===== -->
+<script>
+  document.getElementById("signupForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent actual submission
+    window.location.href = "4041.html"; // redirect to 404 page
+  });
+</script>
+
+  <script>
+    // ===== HAMBURGER MENU =====
+    const hamburger = document.getElementById("hamburger");
+    const navbar = document.getElementById("navbar");
+    hamburger.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+
+    // ===== FORM VALIDATION =====
+    const onlyLettersPattern = /^[A-Za-z\s\-]+$/;
+    const onlyDigits10 = /^[0-9]{10}$/;
+    const onlyDigits6 = /^[0-9]{6}$/;
+
+    const firstname = document.getElementById('firstname');
+    const lastname = document.getElementById('lastname');
+    const phone = document.getElementById('phone');
+    const pincode = document.getElementById('pincode');
+    const signupForm = document.getElementById('signupForm');
+
+    function forceLetters(){ this.value = this.value.replace(/[^A-Za-z\s\-]/g,''); }
+    function forceDigits(){ this.value = this.value.replace(/[^0-9]/g,''); }
+
+    firstname.addEventListener('input', forceLetters);
+    lastname.addEventListener('input', forceLetters);
+    document.getElementById('city').addEventListener('input', forceLetters);
+
+    phone.addEventListener('input', function(){
+      forceDigits.call(this);
+      if(this.value.length > 10) this.value = this.value.slice(0,10);
+    });
+
+    pincode.addEventListener('input', function(){
+      forceDigits.call(this);
+      if(this.value.length > 6) this.value = this.value.slice(0,6);
+    });
+
+    signupForm.addEventListener('submit', function(evt){
+      evt.preventDefault();
+
+      const vFirst = firstname.value.trim();
+      const vLast = lastname.value.trim();
+      const vPhone = phone.value.trim();
+      const vPin = pincode.value.trim();
+      const pwd = document.getElementById('password').value;
+      const cpwd = document.getElementById('confirm_password').value;
+
+      document.getElementById('err-name').textContent = '';
+      document.getElementById('err-phone').textContent = '';
+      document.getElementById('err-pin').textContent = '';
+      document.getElementById('err-pass').textContent = '';
+
+      if (!onlyLettersPattern.test(vFirst) || !onlyLettersPattern.test(vLast)) {
+        document.getElementById('err-name').textContent = 'Names can contain only letters.';
+        firstname.focus();
+        return;
+      }
+
+      if (!onlyDigits10.test(vPhone)) {
+        document.getElementById('err-phone').textContent = 'Phone must be exactly 10 digits.';
+        phone.focus();
+        return;
+      }
+
+      if (!onlyDigits6.test(vPin)) {
+        document.getElementById('err-pin').textContent = 'Pincode must be exactly 6 digits.';
+        pincode.focus();
+        return;
+      }
+
+      if (pwd.length < 6) {
+        document.getElementById('err-pass').textContent = 'Password must be at least 6 characters.';
+        return;
+      }
+
+      if (pwd !== cpwd) {
+        document.getElementById('err-pass').textContent = 'Passwords do not match.';
+        return;
+      }
+
+      const success = document.getElementById('success');
+      success.style.display = 'block';
+
+      setTimeout(()=> window.location.href='index.html', 1400);
+    });
+  </script>
+</body>
+</html>
+
+  <script>
+// ===== HAMBURGER MENU =====
+    const hamburger = document.getElementById("hamburger");
+    const navbar = document.getElementById("navbar");
+    hamburger.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+      hamburger.classList.toggle("open");
+    });
+    </script>

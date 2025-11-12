@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Hospital | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HAMBURGER FIXED STYLES ===== */
+    /* Hamburger Icon */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Animation for open state */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Desktop Menu */
+nav ul.menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+/* Mobile Styling */
+@media (max-width: 900px) {
+  nav ul.menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #920a80, #176B87);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    transform: translateY(-200%);
+    transition: transform 0.4s ease;
+    z-index: 9999;
+  }
+
+  nav ul.menu.active {
+    transform: translateY(0);
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul.menu li a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav ul.menu li a:hover {
+    color: #ffdd57;
+  }
+}
+</style>
+</head>
+<body>
+<!-- ===== FLOATING ICONS BACKGROUND ===== -->
+<div class="floating-icons">
+  <div class="icon">💊</div>
+  <div class="icon">🩺</div>
+  <div class="icon">🧬</div>
+  <div class="icon">❤️</div>
+  <div class="icon">💉</div>
+  <div class="icon">👨‍⚕️</div>
+  <div class="icon">🧫</div>
+  <div class="icon">⚕️</div>
+</div>
+
+<!-- ===== CSS ===== -->
+<style>
+  /* ===== ICON BACKGROUND ANIMATION ===== */
+  .floating-icons {
+    position: fixed;              /* stays behind all content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;                 /* pushes icons behind content */
+    pointer-events: none;        /* prevents blocking clicks */
+    background: linear-gradient(135deg, #176B87, #00c4a7);
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.12;
+    animation: floatUp 15s linear infinite;
+    user-select: none;
+  }
+
+  /* ===== ANIMATION ===== */
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.2;
+    }
+    50% {
+      transform: translateY(50vh) rotate(180deg);
+      opacity: 0.25;
+    }
+    75% {
+      opacity: 0.15;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* ===== RANDOM PLACEMENT ===== */
+  .icon:nth-child(1) { left: 5%;  animation-duration: 18s; font-size: 2rem; }
+  .icon:nth-child(2) { left: 20%; animation-duration: 22s; font-size: 2.8rem; }
+  .icon:nth-child(3) { left: 40%; animation-duration: 19s; font-size: 3rem; }
+  .icon:nth-child(4) { left: 60%; animation-duration: 24s; font-size: 2.4rem; }
+  .icon:nth-child(5) { left: 80%; animation-duration: 20s; font-size: 3.2rem; }
+  .icon:nth-child(6) { left: 10%; animation-duration: 25s; font-size: 2.6rem; }
+  .icon:nth-child(7) { left: 50%; animation-duration: 21s; font-size: 2.2rem; }
+  .icon:nth-child(8) { left: 90%; animation-duration: 23s; font-size: 3rem; }
+
+  /* ===== OPTIONAL GLOW ===== */
+  .icon::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+</style>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="pulse-ring"></div>
+        <p>Loading MediCare...</p>
+      </div>
+    </div>
+    <div class="container">
+      <!-- === LOGO SECTION === -->
+      <div class="logo">
+        <img src="Screenshot (7) (1).webp" alt="MediCare Logo">
+        <h1><span></span></h1>
+      </div>
+<nav id="navbar">
+  <ul class="menu">
+    <li class="dropdown">
+      <a href="index.html">Home ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="home2.html">Home2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="buy medicine.html">Medicines</a></li>
+
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ambulane.html">Ambulance</a></li>
+    <li><a href="find doctors.html">Doctors</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQs</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="logout.html">Logout</a></li>
+  </ul>
+</nav>
+    
+
+      
+
+      <!-- ===== FIXED HAMBURGER BUTTON ===== -->
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+<script>
+  <!-- ===== HAMBURGER JS FIX ===== -->
+  // ===== HAMBURGER TOGGLE =====
+  const hamburger = document.querySelector('#menu-toggle'); // <-- fixed selector
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('active');
+  });
+
+  // ===== MOBILE DROPDOWN TOGGLE =====
+  const dropdownLinks = document.querySelectorAll('.dropdown > a');
+
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault(); // stop direct link navigation
+        const parent = link.parentElement;
+        parent.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+  <!-- ===== YOUR EXISTING JS, LOADER, FOOTER, ETC. REMAIN BELOW ===== -->
+</body>
+</html>
+
+  <!-- ===== HERO SECTION ===== -->
+   <!-- ===== BACKGROUND IMAGE SLIDER ===== -->
+<section class="bg-slider">
+  <div class="slide active" style="background-image: url('Gemini_Generated_Image_ck0hlock0hlock0h (1).webp');">
+    <div class="content">
+      <h1>World-Class Healthcare</h1>
+      <p>Advanced medical technology and compassionate care for every patient.</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('Gemini_Generated_Image_m5a5mem5a5mem5a5.webp');">
+    <div class="content">
+      <h1>Expert Doctors Team</h1>
+      <p>Meet our specialists committed to excellence in every treatment.</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('Gemini_Generated_Image_g4uhgkg4uhgkg4uh.webp');">
+    <div class="content">
+      <h1>Advanced Diagnostics</h1>
+      <p>Accurate testing with world-class medical equipment and labs.</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('Gemini_Generated_Image_zi47ykzi47ykzi47.webp');">
+    <div class="content">
+      <h1>24x7 Emergency Support</h1>
+      <p>Always there when you need us — trusted ambulance and emergency care.</p>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <div class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</div>
+  <div class="nav-btn next" onclick="changeSlide(1)">&#10095;</div>
+
+  <!-- Dots -->
+  <div class="dots" id="sliderDots"></div>
+</section>
+
+<!-- ===== SLIDER CSS ===== -->
+<style>
+  .bg-slider {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+  }
+
+  .bg-slider .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .bg-slider .slide.active {
+    opacity: 1;
+  }
+
+  .bg-slider .content {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    border-radius: 12px;
+    max-width: 80%;
+  }
+
+  .bg-slider .content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+
+  .bg-slider .content p {
+    font-size: 1.1rem;
+  }
+
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: #fff;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border-radius: 50%;
+    user-select: none;
+    transition: 0.3s;
+  }
+
+  .nav-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .prev { left: 20px; }
+  .next { right: 20px; }
+
+  /* Dots */
+  .dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    background: #00b4d8;
+    transform: scale(1.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .bg-slider .content h1 {
+      font-size: 1.8rem;
+    }
+    .bg-slider .content p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<!-- ===== SLIDER JS ===== -->
+<script>
+  const slides = document.querySelectorAll(".bg-slider .slide");
+  const dotsContainer = document.getElementById("sliderDots");
+  let currentSlide = 0;
+
+  // Create dots dynamically
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+  const dots = document.querySelectorAll(".dot");
+
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+  }
+
+  function changeSlide(direction) {
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    showSlide(index);
+  }
+
+  // Auto-slide every 5 seconds
+  setInterval(() => changeSlide(1), 5000);
+
+  // Initialize
+  showSlide(currentSlide);
+</script>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>We Care For Your Health</h1>
+      <p>World-class healthcare with compassion and excellence.</p>
+      <a href="#services" class="btn">Explore Services</a>
+      <a href="#doctors" class="btn"> Our Doctors</a>
+    </div>
+  </section>
+
+
+  <style>
+    
+  </style>
+</head>
+<body>
+
+  
+  
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="services" id="services">
+    <h2>Our Medical Services</h2>
+    <div class="container service-grid">
+      <div class="service-card">
+        <img src="cardilogy.webp" alt="Cardiology">
+        <h3>Cardiology</h3>
+        <p>Advanced diagnosis and treatment for all heart-related conditions.</p>
+      </div>
+      <div class="service-card">
+        <img src="orto.webp" alt="Orthopedics">
+        <h3>Orthopedics</h3>
+        <p>Comprehensive bone, joint, and muscle care by top specialists.</p>
+      </div>
+      <div class="service-card">
+        <img src="per.webp" alt="Pediatrics">
+        <h3>Pediatrics</h3>
+        <p>Complete care for infants, children, and adolescents.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOCTORS SECTION ===== -->
+  <section class="doctors" id="doctors">
+    <h2>Meet Our Doctors</h2>
+    <div class="container doctor-grid">
+      <div class="doctor-card">
+        <img src="doctor1.webp" alt="Doctor">
+        <h3>Dr. Asha Mehta</h3>
+        <p>Cardiologist</p>
+      </div>
+      <div class="doctor-card">
+        <img src="docto2.webp" alt="Doctor">
+        <h3>Dr. Raj Patel</h3>
+        <p>Orthopedic Surgeon</p>
+      </div>
+      <div class="doctor-card">
+        <img src="doctor3.webp" alt="Doctor">
+        <h3>Dr. Nishant Verma</h3>
+        <p>Pediatrician</p>
+      </div>
+    </div>
+  </section>
+<style>
+    .brand-section {
+      padding: 70px 0;
+      background: linear-gradient(135deg, #e0f7fa, #caf0f8);
+      text-align: center;
+    }
+
+    .brand-section h2 {
+      font-size: 2.2rem;
+      color: #023e8a;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .brand-section h2::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+     
+      border-radius: 10px;
+    }
+
+    .brand-section p {
+      color: white;
+      margin-bottom: 50px;
+      font-size: 1rem;
+    }
+
+    .slider {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .slide-track {
+      display: flex;
+      width: calc(220px * 14);
+      animation: scroll 35s linear infinite;
+    }
+
+    .slide {
+      width: 200px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 15px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .slide:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 180, 216, 0.3);
+    }
+
+    .slide img {
+      width: 150px;
+      height: auto;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .slide:hover img {
+      filter: grayscale(0%);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-220px * 7)); }
+    }
+
+    @media (max-width: 768px) {
+      .slide-track {
+        animation-duration: 25s;
+      }
+      .slide {
+        width: 160px;
+        height: 90px;
+      }
+      .slide img {
+        width: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ 
+  <section class="brand-section">
+    <h1>Our Healthcare Partners</h1>
+  
+
+    <div class="slider">
+  <div class="slide-track">
+    <!-- Brand Logos -->
+    <div class="slide"><img src="https://1000logos.net/wp-content/uploads/2021/05/Pfizer-logo.png" alt="Pfizer"></div>
+    <div class="slide"><img src="medplus.webp" alt="medplus"></div>
+    <div class="slide"><img src="johnson logo.webp" alt="johnson"></div>
+    
+    <div class="slide"><img src="https://1000logos.net/wp-content/uploads/2021/05/Pfizer-logo.png" alt="Pfizer"></div>
+    <div class="slide"><img src="johnson logo.webp" alt="Johnson & Johnson"></div>
+    <div class="slide"><img src="medplus.webp" alt="AstraZeneca"></div>
+    <div class="slide"><img src="abbott (1).webp" alt="Abbott"></div>
+    <div class="slide"><img src="roche.webp" alt="Roche"></div>
+   
+    
+</div>
+
+
+</body>
+</html>
+
+ 
+
+
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    setTimeout(() => loader.style.display = "none", 1000);
+  });
+</script>
+<style>
+  
+   /* ====== GLOBAL STYLES ====== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f4f9ff;
+      color: #333;
+    }
+
+    /* ====== FOOTER STYLES ====== */
+    footer {
+      background: linear-gradient(135deg, #2515b8, #176B87);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      animation: rotate-bg 25s linear infinite;
+    }
+
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 60px 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-logo h2 span {
+      color: #00e0ff;
+    }
+
+    .footer-logo p {
+      margin-top: 10px;
+      color: #d6e8f0;
+      font-size: 0.95rem;
+    }
+social-icons {
+  
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;
+  gap: 15px;                 /* space between icons */
+  margin-top: 20px;
+}
+
+.social-icons img{
+  height: 30px;
+  width:30px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+
+    
+
+    .footer-links h3,
+    .footer-services h3,
+    .footer-contact h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-services h3::after,
+    .footer-contact h3::after {
+      content: "";
+      width: 40px;
+      height: 2px;
+      background: #00e0ff;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li,
+    .footer-services ul li {
+      margin: 10px 0;
+    }
+
+    .footer-links ul li a,
+    .footer-services ul li a {
+      text-decoration: none;
+      color: #d6e8f0;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-services ul li a:hover {
+      color: #00e0ff;
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .footer-contact i {
+      color: white;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      background: blue;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links h3::after,
+      .footer-services h3::after,
+      .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-logo">
+        <h2>Health<span>Care+</span></h2>
+        <p>Your trusted partner in wellness and medical innovation.</p>
+        <div class="social-icons">
+    <a href="404.html"> 
+   <img src="instagram.webp" alt=""></a> 
+    <a href="404.html"> 
+    <img src="twitter-logo.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="facebook.webp" alt=""></a> 
+     <a href="404.html"> 
+    <img src="linkedin.webp" alt=""></a> 
+   
+      </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+         <ul id="nav-links">
+           <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="buy medicine.html">Buy Medicines</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="find doctors.html">Doctors</a></li>
+           <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+      </div>
+
+      
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Bengaluru</p>
+        <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+      </div>
+
+    </div>
+    <footer>
+<footer></footer>
+    <div class="footer-bottom">
+      <p>© 2025 HealthCare+. All Rights Reserved | Designed with ❤️ by P Gowda</p>
+    </div>
+  </footer>
+    </footer>
+    
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  
